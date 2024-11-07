@@ -1,3 +1,37 @@
+# Version 0.2.11
+Released on 2024-10-29
+
+- feat: add alt text for language icons
+- fix: insufficient sidebar responsiveness
+- feat: add alt text for link in logo
+
+
+# Version 0.2.10
+Released on 2024-10-13
+
+- fix: broken iframe attr
+- fix: adds some zIndex to ensure that left panel is always on top
+- feat: add proper html lang
+- feat: reduce top bar height
+- feat: change color of language change selection
+- feat: change size of title bar in the subpages
+
+# Version 0.2.9
+Released on 2024-09-27
+
+- fix: sitemap gives proper links for blog posts
+
+# Version 0.2.8
+Released on 2024-09-26
+
+- fix: sitemap no longer crashes site
+
+# Version 0.2.7
+Released on 2024-09-26
+
+- fix: add alt text for logo
+- fix: removed leaflet dependency
+
 # Version 0.2.6
 Released on 2024-08-24
 

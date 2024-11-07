@@ -14,6 +14,9 @@ def test_app():
         "USE_WWW": False,
         "BLOG_PREFIX": "/blog",
         "TRANSLATION_DIRECTORIES": ["/some/fake/dir"],
+        "LANGUAGES": {
+            "en": {"name": "English", "flag": "uk", "domain": "localhost", "country": "GB"}
+        },
         "DB": {
             "TYPE": "json",
             "DATA": {
@@ -48,7 +51,7 @@ def test_app():
 
 def test_babel_gets_proper_directories(test_app):
     with test_app.app_context():
-        assert list(test_app.babel.domain_instance.translation_directories) == ["/some/fake/dir"]
+        assert "/some/fake/dir" in list(test_app.babel.domain_instance.translation_directories)
 
 
 def test_logo_has_set_src(test_app):
@@ -157,7 +160,9 @@ def test_that_default_page_title_is_app_name(test_app):
     assert soup.title.string == "testing App Name"
 
 
-@pytest.mark.parametrize("tag, subtag, value", [("link", "hreflang", "en"), ("html", "lang", "en")])
+@pytest.mark.parametrize(
+    "tag, subtag, value", [("link", "hreflang", "en"), ("html", "lang", "en-GB")]
+)
 def test_that_tag_has_proper_value(test_app, tag, subtag, value):
     response = test_app.test_client().get("/")
     soup = BeautifulSoup(response.data, "html.parser")
@@ -173,9 +178,34 @@ def test_that_logo_has_proper_alt_text(test_app):
     assert logo_img.get("alt") == "testing App Name logo"
 
 
+def test_that_logo_link_has_proper_aria_label_text(test_app):
+    response = test_app.test_client().get("/")
+    soup = BeautifulSoup(response.data, "html.parser")
+    logo_link = soup.find("a", class_="navbar-brand")
+    assert isinstance(logo_link, Tag)
+    assert logo_link.get("aria-label") == "Link to home page"
+
+
 def test_that_language_menu_has_proper_code(test_app):
     response = test_app.test_client().get("/")
     soup = BeautifulSoup(response.data, "html.parser")
     language_menu = soup.find("span", class_="language-indicator-text")
     assert isinstance(language_menu, Tag)
     assert language_menu.get_text() == "en"
+
+
+def test_that_language_switch_has_proper_aria_label_text(test_app):
+    response = test_app.test_client().get("/")
+    soup = BeautifulSoup(response.data, "html.parser")
+    logo_link = soup.find("button", id="languages-menu")
+    assert isinstance(logo_link, Tag)
+    assert (
+        logo_link.get("aria-label")
+        == "Language switch icon, used to change the language of the website"
+    )
+
+
+def test_that_page_has_proper_html_lang_attribute(test_app):
+    response = test_app.test_client().get("/")
+    soup = BeautifulSoup(response.data, "html.parser")
+    assert soup.html and soup.html.get("lang") == "en-GB"

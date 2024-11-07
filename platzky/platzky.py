@@ -1,3 +1,4 @@
+import os
 import typing as t
 import urllib.parse
 
@@ -24,6 +25,10 @@ class Engine(Flask):
         self.notifiers = []
         self.dynamic_body = ""
         self.dynamic_head = ""
+        directory = os.path.dirname(os.path.realpath(__file__))
+        locale_dir = os.path.join(directory, "locale")
+        config.translation_directories.append(locale_dir)
+
         babel_translation_directories = ";".join(config.translation_directories)
         self.babel = Babel(
             self,
@@ -94,10 +99,12 @@ def create_engine(config: Config, db) -> Engine:
     def utils():
         locale = app.get_locale()
         flag = lang.flag if (lang := config.languages.get(locale)) is not None else ""
+        country = lang.country if (lang := config.languages.get(locale)) is not None else ""
         return {
             "app_name": config.app_name,
             "languages": languages_dict(config.languages),
             "current_flag": flag,
+            "current_lang_country": country,
             "current_language": locale,
             "url_link": url_link,
             "menu_items": app.db.get_menu_items(),
@@ -130,7 +137,9 @@ def create_app_from_config(config: Config) -> Engine:
         blog_prefix=config.blog_prefix,
         locale_func=engine.get_locale,
     )
-    seo_blueprint = seo.create_seo_blueprint(db=engine.db, config=engine.config)
+    seo_blueprint = seo.create_seo_blueprint(
+        db=engine.db, config=engine.config, locale_func=engine.get_locale
+    )
     engine.register_blueprint(blog_blueprint)
     engine.register_blueprint(seo_blueprint)
 
