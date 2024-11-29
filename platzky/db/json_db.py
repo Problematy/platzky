@@ -72,12 +72,6 @@ class Json(DB):
             raise Exception("Content should not be None")
         return content
 
-    def _get_site_content_internationalized(self):
-        internationalized = self._get_site_content().get("internationalized")
-        if internationalized is None:
-            raise Exception("Internationalized should not be None")
-        return internationalized
-
     def get_logo_url(self):
         return self._get_site_content().get("logo_url", "")
 
