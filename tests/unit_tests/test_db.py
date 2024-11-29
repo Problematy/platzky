@@ -17,18 +17,18 @@ def test_db_extension():
                 "TYPE": "json",
                 "DATA": {
                     "site_content": {
-                                "pages": [
-                                    {
-                                        "title": "test",
-                                        "slug": "test",
-                                        "contentInMarkdown": "test",
-                                    },
-                                    {
-                                        "title": "test2",
-                                        "slug": "test2",
-                                        "contentInMarkdown": "test2",
-                                    },
-                                ]
+                        "pages": [
+                            {
+                                "title": "test",
+                                "slug": "test",
+                                "contentInMarkdown": "test",
+                            },
+                            {
+                                "title": "test2",
+                                "slug": "test2",
+                                "contentInMarkdown": "test2",
+                            },
+                        ]
                     }
                 },
             }
