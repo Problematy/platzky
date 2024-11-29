@@ -25,6 +25,29 @@
         ]
       },
       {
+        "title": "Drużyna Pierścienia",
+        "author": "J.R.R. Tolkien",
+        "excerpt": "Drużyna Pierścienia to pierwszy z trzech tomów epickiej powieści Władca Pierścieni autorstwa J.R.R. Tolkiena. Książka ta jest kontynuowana przez Dwie Wieże oraz Powrót Króla.",
+        "language": "pl",
+        "slug": "druzyna",
+        "tags": [
+          "tag/1"
+        ],
+        "contentInMarkdown": "Once upon a time...",
+        "date": "1954-01-29",
+        "coverImage": {
+          "alternateText": "The Fellowship of the Ring cover",
+          "url": "https://upload.wikimedia.org/wikipedia/en/8/8e/The_Fellowship_of_the_Ring_cover.gif"
+        },
+        "comments": [
+          {
+            "date": "2021-02-19T00:00:00",
+            "comment": "My precious!",
+            "author": "Gollum"
+          }
+        ]
+      },
+      {
         "title": "title",
         "author": "autor",
         "excerpt": "post excerpt",
@@ -110,7 +133,7 @@
         },
         {
           "name": "Drużyna pierścienia",
-          "url": "/druzyna"
+          "url": "/blog/druzyna"
         },
         {
           "name": "Nieistniejąca strona",
@@ -124,7 +147,7 @@
         },
         {
           "name": "The Fellowship of the Ring",
-          "url": "/fellows"
+          "url": "/blog/fellows"
         },
         {
           "name": "Non-existing page",
