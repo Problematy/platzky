@@ -225,12 +225,3 @@ def test_that_page_has_proper_html_lang_attribute(test_app):
     response = test_app.test_client().get("/")
     soup = BeautifulSoup(response.data, "html.parser")
     assert soup.html and soup.html.get("lang") == "en-GB"
-
-
-#
-# def test_that_internationalization_works(test_app):
-#     response = test_app.test_client().get("/", headers={"Accept-Language": "pl-PL"})
-#     soup = BeautifulSoup(response.data, "html.parser")
-#     logo_img = soup.find("img", class_="logo")
-#     assert isinstance(logo_img, Tag)
-#     assert logo_img.get("src") == "https://example.com/logo.png?lang=pl"
