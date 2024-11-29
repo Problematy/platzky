@@ -117,6 +117,8 @@ class GraphQL(DB):
                 menu_items_with_lang, variable_values={"language": lang}
             )
 
+        # TODO remove try except block after bumping up version
+        # now it's backwards compatible with older versions
         except TransportQueryError:
             menu_items_without_lang = gql(
                 """
