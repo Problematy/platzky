@@ -2,8 +2,8 @@
 
 
 from gql import Client, gql
-from gql.transport.exceptions import TransportQueryError
 from gql.transport.aiohttp import AIOHTTPTransport
+from gql.transport.exceptions import TransportQueryError
 from pydantic import Field
 
 from ..models import Color, Post
