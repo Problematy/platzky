@@ -17,8 +17,6 @@ def test_db_extension():
                 "TYPE": "json",
                 "DATA": {
                     "site_content": {
-                        "internationalized": {
-                            "en": {
                                 "pages": [
                                     {
                                         "title": "test",
@@ -31,8 +29,6 @@ def test_db_extension():
                                         "contentInMarkdown": "test2",
                                     },
                                 ]
-                            }
-                        }
                     }
                 },
             }
