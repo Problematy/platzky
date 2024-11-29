@@ -2,6 +2,7 @@
 
 
 from gql import Client, gql
+from gql.transport.exceptions import TransportQueryError
 from gql.transport.aiohttp import AIOHTTPTransport
 from pydantic import Field
 
@@ -112,8 +113,11 @@ class GraphQL(DB):
                 }
                 """
             )
-            menu_items = self.client.execute(menu_items_with_lang, variable_values={"language": lang})
-        except:
+            menu_items = self.client.execute(
+                menu_items_with_lang, variable_values={"language": lang}
+            )
+
+        except TransportQueryError:
             menu_items_without_lang = gql(
                 """
                 query MyQuery {
